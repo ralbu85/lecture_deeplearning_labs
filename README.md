@@ -5,7 +5,7 @@
 
 | 주차 | 실습 | Colab |
 |:---:|---|:---:|
-| 1 | 데이터와 모형 — 좋은 파라미터를 직접 찾아낸다 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab01.ipynb) |
+| 1 | 데이터를 행렬로 — 벡터와 행렬 다루기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab01.ipynb) |
 | 2 | 퍼셉트론을 쌓아 신경망 만들기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab02.ipynb) |
 | 3 | 학습 루프를 직접 만든다 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
 | 4 | 진짜 표 하나를 끝까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04.ipynb) |
@@ -28,8 +28,8 @@
 
 | 주차 | 완성하는 것 | 그 주에 새로 배우는 PyTorch 부품 |
 |:---:|---|---|
-| 1 | 격자 탐색으로 최적 파라미터 찾기 (펭귄 몸무게) | `Tensor` · `TensorDataset` · `nn.Module` · `nn.Parameter` · `nn.MSELoss` |
-| 2 | 마력→연비, 세 모형 비교 (선형 / 활성화 없음 / ReLU) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `DataLoader` |
+| 1 | 표·사진·문장을 각각 행렬로 만들고, 행렬 곱으로 예측 | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim`/`keepdim` · `reshape`/`.T`/`unsqueeze` · 브로드캐스팅 · `@` |
+| 2 | 마력→연비, 세 모형 비교 (선형 / 활성화 없음 / ReLU) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `TensorDataset` · `DataLoader` · `torch.optim` |
 | 3 | 펭귄 3종 분류 (학습 루프를 직접 작성) | `CrossEntropyLoss` · `requires_grad`/`backward` · `torch.optim` |
 | 4 | 자동차 9변수→연비 (분할·미니배치·조기 종료) | `batch_size`/`shuffle` · `train()`/`eval()` · `state_dict` |
 | 5 | 옷 3종 분류 (파라미터 235개 CNN) | `Conv2d` · `transforms` · `ImageFolder` 이전 단계 |
