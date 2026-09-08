@@ -5,7 +5,7 @@
 
 | 번호 | 실습 | Colab |
 |:---:|---|:---:|
-| 1 | 벡터와 행렬 다루기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab01.ipynb) |
+| 1 | 신경망 입력을 위한 텐서 연습 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab01.ipynb) |
 | 2 | 퍼셉트론을 쌓아 신경망 만들기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab02.ipynb) |
 | 3 | 학습 루프를 직접 만든다 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
 | 4 | 진짜 표 하나를 끝까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04.ipynb) |
@@ -20,16 +20,16 @@
 ## 사용법
 
 - 실습은 **채점하지 않는 연습장**입니다. 직접 타이핑하며 따라 실행하고, 숫자를 바꾸어 결과를 확인합니다.
-- `✏️ 직접 채워 보세요` 셀은 스스로 작성한 뒤, 바로 아래 정답 셀과 맞춰 봅니다.
-- 데이터는 모두 인터넷에서 바로 내려받으므로 별도 준비가 필요 없습니다.
+- `✏️ 직접 채워 보세요` 셀은 스스로 작성한 뒤 확인 코드로 검산합니다. 실습 1·2의 해설은 노트북 끝에 있으며, 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
+- 실습 1·2는 코드에 포함된 작은 텐서를 사용합니다. 외부 데이터가 필요한 실습은 코드에서 내려받습니다.
 - 이론 설명은 강의 사이트에 있습니다. 실습 번호는 이론 장의 순서를 따르며, 어느 주에 어느 실습을 하는지는 사이트의 주차별 계획을 따릅니다. 9번(객체탐지)은 주차 계획 밖의 심화 자료입니다.
 
 ## 만드는 것과 배우는 부품
 
 | 번호 | 완성하는 것 | 새로 배우는 PyTorch 부품 |
 |:---:|---|---|
-| 1 | 작은 행렬로 예측과 손실을 계산 | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim=0`/`dim=1` · `unsqueeze` · 브로드캐스팅 · `@` |
-| 2 | 마력→연비, 세 모형 비교 (선형 / 활성화 없음 / ReLU) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `TensorDataset` · `DataLoader` · `torch.optim` |
+| 1 | 입력·정답 텐서 준비, 기본 연산과 행렬 곱 (75분) | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim` · 사칙연산 · `@` · `item` |
+| 2 | 이론의 신경망 그림 → 층 연결·순전파·파라미터 수 확인 (75분) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `parameters` · `numel` |
 | 3 | 펭귄 3종 분류 (학습 루프를 직접 작성) | `CrossEntropyLoss` · `requires_grad`/`backward` · `torch.optim` |
 | 4 | 자동차 9변수→연비 (분할·미니배치·조기 종료) | `batch_size`/`shuffle` · `train()`/`eval()` · `state_dict` |
 | 5 | 옷 3종 분류 (파라미터 235개 CNN) | `Conv2d` · `transforms` · `ImageFolder` 이전 단계 |
@@ -40,8 +40,8 @@
 | 11 | 같은 과제를 어텐션으로 (본 단어 시각화) | `softmax` 마스킹 · `MultiheadAttention` |
 | 12 | Transformer 블록 조립 + GPT-2 검산·생성 | `LayerNorm` · 잔차 · `AutoModelForCausalLM` |
 
-랩은 **PyTorch 표준 부품만** 씁니다. 편의를 위한 별도 헬퍼 함수(`fit()` 같은)는 만들지 않습니다 —
-학습 루프는 실습 2부터 12까지 같은 네 줄이 그대로 반복됩니다.
+실습 1·2에서는 텐서와 신경망 조립을 연습하고, 실습 3부터 학습 루프를 작성합니다.
+학습에는 PyTorch 표준 부품을 사용하며, `zero_grad → loss → backward → step`의 기본 순서를 반복해서 익힙니다.
 
 ## 라이선스
 
