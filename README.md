@@ -29,7 +29,7 @@
 | 번호 | 완성하는 것 | 새로 배우는 PyTorch 부품 |
 |:---:|---|---|
 | 1 | 모듈·함수·속성부터 사원 표 선택, 후보 오차 비교, 행렬 곱까지 (75분) | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim` · 사칙연산 · `@` · `item` |
-| 2 | 층 생성·호출 → 이론의 회귀·활성화·XOR 확인 → 모형 조립 (75분) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `parameters` · `numel` |
+| 2 | 행렬 계산 → 같은 가중치의 Linear → 활성화·XOR 확인 → 모형 조립 (75분) | `nn.Linear` · 활성화 모듈 · `nn.Sequential` · `parameters` · `numel` |
 | 3 | 펭귄 3종 분류 (학습 루프를 직접 작성) | `CrossEntropyLoss` · `requires_grad`/`backward` · `torch.optim` |
 | 4 | 자동차 9변수→연비 (분할·미니배치·조기 종료) | `batch_size`/`shuffle` · `train()`/`eval()` · `state_dict` |
 | 5 | 옷 3종 분류 (파라미터 235개 CNN) | `Conv2d` · `transforms` · `ImageFolder` 이전 단계 |
