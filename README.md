@@ -7,7 +7,7 @@
 |:---:|---|:---:|
 | 1 | 신경망 입력을 위한 텐서 연습 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab01.ipynb) |
 | 2 | 퍼셉트론을 쌓아 신경망 만들기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab02.ipynb) |
-| 3 | 학습 루프를 직접 만든다 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
+| 3 | 미분과 경사하강법을 코드로 구현하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
 | 4 | 진짜 표 하나를 끝까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04.ipynb) |
 | 5 | 이미지를 텐서로, 콘볼루션을 코드로 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05.ipynb) |
 | 6 | CNN 구조 만들고 학습시키기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab06.ipynb) |
@@ -20,8 +20,8 @@
 ## 사용법
 
 - 실습은 **채점하지 않는 연습장**입니다. 직접 타이핑하며 따라 실행하고, 숫자를 바꾸어 결과를 확인합니다.
-- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3의 해설은 노트북 끝에 있습니다. 실습 3에서는 학습 루프를 완성하고 손실 그래프로 결과를 확인합니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
-- 실습 1·2는 코드에 포함된 작은 텐서를 사용합니다. 외부 데이터가 필요한 실습은 코드에서 내려받습니다.
+- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3의 해설은 노트북 끝에 있습니다. 실습 3에서는 이론의 계산과 실행값을 비교하고, 학습률에 따른 가중치의 이동을 확인합니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
+- 실습 1~3은 코드에 포함된 작은 텐서를 사용합니다. 외부 데이터가 필요한 실습은 코드에서 내려받습니다.
 - 이론 설명은 강의 사이트에 있습니다. 실습 번호는 이론 장의 순서를 따르며, LAB1~7은 1~7주차, LAB10~12는 9~11주차에 진행합니다. 웹페이지와 Colab 링크는 사이트의 주차별 계획을 따릅니다. 9번(객체탐지)은 주차 계획 밖의 심화 자료입니다.
 
 ## 만드는 것과 배우는 부품
@@ -30,7 +30,7 @@
 |:---:|---|---|
 | 1 | 모듈·함수·속성부터 사원 표 선택, 후보 오차 비교, 행렬 곱까지 (75분) | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim` · 사칙연산 · `@` · `item` |
 | 2 | 교재 그림 → Linear·활성화 → XOR 함께 구현 → 그림 보고 모델 작성 (75분) | `nn.Linear` · 활성화 함수 · `nn.Sequential` |
-| 3 | 기울기 확인 → 펭귄 분류 학습 → 루프 직접 작성·학습률 비교 (90분) | `CrossEntropyLoss` · `backward` · `zero_grad` · `SGD` |
+| 3 | 이론의 손실함수로 기울기·갱신·학습률·두 가중치 연습 (90분) | `requires_grad` · `backward`/`grad` · `no_grad` · `SGD` |
 | 4 | 자동차 9변수→연비 (분할·미니배치·조기 종료) | `batch_size`/`shuffle` · `train()`/`eval()` · `state_dict` |
 | 5 | 옷 3종 분류 (파라미터 235개 CNN) | `Conv2d` · `transforms` · `ImageFolder` 이전 단계 |
 | 6 | CIFAR-10 3종 분류 (Flatten vs GAP) | `MaxPool2d` · `AdaptiveAvgPool2d` · `nn.Module` 서브클래싱 |
