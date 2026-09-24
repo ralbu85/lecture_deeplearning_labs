@@ -30,7 +30,7 @@
 |:---:|---|---|
 | 1 | 모듈·함수·속성부터 사원 표 선택, 후보 오차 비교, 행렬 곱까지 (75분) | `Tensor` · `shape`/`dtype` · 인덱싱·마스크 · `dim` · 사칙연산 · `@` · `item` |
 | 2 | 교재 그림 → Linear·활성화 → XOR 함께 구현 → 그림 보고 모델 작성 (75분) | `nn.Linear` · 활성화 함수 · `nn.Sequential` |
-| 3 | 1차식·2차식 자동미분 → 예측·손실 계산 → 신경망 갱신·반복 학습 | `requires_grad` · `backward`/`grad` · `MSELoss` · `SGD` |
+| 3 | 자동미분 → 두 변수의 편미분·기울기 벡터 → 손실 계산·신경망 학습 | `requires_grad` · `backward`/`grad` · `MSELoss` · `SGD` |
 | 4 | 자동차 9변수→연비 (분할·미니배치·조기 종료) | `batch_size`/`shuffle` · `train()`/`eval()` · `state_dict` |
 | 5 | 옷 3종 분류 (파라미터 235개 CNN) | `Conv2d` · `transforms` · `ImageFolder` 이전 단계 |
 | 6 | CIFAR-10 3종 분류 (Flatten vs GAP) | `MaxPool2d` · `AdaptiveAvgPool2d` · `nn.Module` 서브클래싱 |
