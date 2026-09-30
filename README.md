@@ -10,7 +10,8 @@
 | 3 | 자동미분에서 신경망 학습까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
 | 4-1 | 표 하나를 나누고 텐서로 만들기까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04_1.ipynb) |
 | 4-2 | 배치로 학습하고, 멈출 곳을 고르고, 한 번만 평가하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04_2.ipynb) |
-| 5 | 이미지를 텐서로, 콘볼루션을 코드로 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05.ipynb) |
+| 5-1 | 사진 한 장은 어떤 숫자 배열인가 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_1.ipynb) |
+| 5-2 | 콘볼루션을 코드로 만들고 옷 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_2.ipynb) |
 | 6 | CNN 구조 만들고 학습시키기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab06.ipynb) |
 | 7 | 전이학습 — 사진 몇백 장으로 학습시키기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab07.ipynb) |
 | 9 (심화) | 객체탐지 — IoU와 NMS를 직접 구현하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab09.ipynb) |
@@ -22,7 +23,7 @@
 ## 사용법
 
 - 실습은 **채점하지 않는 연습장**입니다. 직접 타이핑하며 따라 실행하고, 숫자를 바꾸어 결과를 확인합니다.
-- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3·5의 해설은 노트북 끝에 있습니다. 실습 4-1·4-2는 보고 타이핑 방식으로, ✍️ 셀은 위에 보인 코드를 손으로 치고 📝 과제는 힌트만 있습니다. 실습 3에서는 셀마다 함수값·기울기·손실·가중치의 변화를 확인하고 신경망 학습 코드를 완성합니다. 실습 4는 표 하나를 나누고 학습·평가하는 절차를, 실습 5는 이미지 텐서와 콘볼루션을 같은 방식으로 따라갑니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
+- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3의 해설은 노트북 끝에 있습니다. 실습 4-1·4-2·5-1·5-2는 보고 타이핑 방식으로, ✍️ 셀은 위에 보인 코드를 손으로 치고 📝 과제는 힌트만 있습니다. 실습 3에서는 셀마다 함수값·기울기·손실·가중치의 변화를 확인하고 신경망 학습 코드를 완성합니다. 실습 4는 표 하나를 나누고 학습·평가하는 절차를, 실습 5는 이미지 텐서와 콘볼루션을 같은 방식으로 따라갑니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
 - 실습 1~3은 코드에 포함된 작은 텐서를 사용합니다. 외부 데이터가 필요한 실습은 코드에서 내려받습니다.
 - 이론 설명은 강의 사이트에 있습니다. 실습 번호는 이론 장의 순서를 따르며, LAB1~7은 1~7주차, LAB10~12는 9~11주차에 진행합니다. 웹페이지와 Colab 링크는 사이트의 주차별 계획을 따릅니다. 9번(객체탐지)은 주차 계획 밖의 심화 자료입니다.
 
@@ -34,7 +35,7 @@
 | 2 | 교재 그림 → Linear·활성화 → XOR 함께 구현 → 그림 보고 모델 작성 (75분) | `nn.Linear` · 활성화 함수 · `nn.Sequential` |
 | 3 | 자동미분 → 두 변수의 편미분·기울기 벡터 → 손실 계산·신경망 학습 | `requires_grad` · `backward`/`grad` · `MSELoss` · `SGD` |
 | 4-1 · 4-2 | 자동차 9변수→연비: 분할 → 훈련 통계로 표준화·원-핫 → 로더 순회 (4-1) → 배치 다섯 줄 → 함수 조립 → 러닝커브 → 최적 지점 복원 → 테스트 평가 (4-2). 보고 타이핑 방식(✍️/▶/📝) | `train_test_split` · `DataLoader` · `train()`/`eval()` · `no_grad` · `state_dict` |
-| 5 | 이미지 → `(N, C, H, W)` → 콘볼루션 직접 계산 → 옷 3종 분류 (파라미터 235개 CNN) | `permute` · `ToTensor`/`Normalize` · `F.conv2d` · `Conv2d` · `CrossEntropyLoss` |
+| 5-1 · 5-2 | 사진 → 배열·채널·축 순서 → `ToTensor`/`Normalize` → `(N, C, H, W)` (5-1) → 콘볼루션 직접 계산 → `F.conv2d` → 출력 크기·파라미터 → 옷 3종 분류 235개 CNN (5-2). 보고 타이핑 방식 | `permute` · `Compose` · `F.conv2d` · `Conv2d` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 3종 분류 (Flatten vs GAP) | `MaxPool2d` · `AdaptiveAvgPool2d` · `nn.Module` 서브클래싱 |
 | 7 | 개미·벌 397장 (처음부터 / 동결 / 미세조정) | `ImageFolder` · `models.resnet18` · `requires_grad=False` |
 | 9 (심화) | 물체 위치 예측 (박스 회귀, IoU 평가) | `box_iou` · `nms` · 회귀 헤드 |
