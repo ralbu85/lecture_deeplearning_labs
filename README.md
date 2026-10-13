@@ -35,7 +35,7 @@
 | 2 | 교재 그림 → Linear·활성화 → XOR 함께 구현 → 그림 보고 모델 작성 (75분) | `nn.Linear` · 활성화 함수 · `nn.Sequential` |
 | 3 | 자동미분 → 두 변수의 편미분·기울기 벡터 → 손실 계산·신경망 학습 | `requires_grad` · `backward`/`grad` · `MSELoss` · `SGD` |
 | 4-1 · 4-2 | 자동차 9변수→연비: 분할 → 훈련 통계로 표준화·원-핫 → 로더 순회 (4-1) → 배치 다섯 줄 → 함수 조립 → 러닝커브 → 최적 지점 복원 → 테스트 평가 (4-2). 보고 타이핑 방식(✍️/▶/📝) | `train_test_split` · `DataLoader` · `train()`/`eval()` · `no_grad` · `state_dict` |
-| 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`/`Normalize`/`Compose` → `(N, C, H, W)` → 파라미터 폭발 → 콘볼루션 한 칸씩 → for문 → 함수 조립 → `F.conv2d` 대조 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor`/`Normalize`/`Compose` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
+| 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 콘볼루션 한 칸씩 → for문 → 함수 조립 → `F.conv2d` 대조 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 3종 분류 (Flatten vs GAP) | `MaxPool2d` · `AdaptiveAvgPool2d` · `nn.Module` 서브클래싱 |
 | 7 | 개미·벌 397장 (처음부터 / 동결 / 미세조정) | `ImageFolder` · `models.resnet18` · `requires_grad=False` |
 | 9 (심화) | 물체 위치 예측 (박스 회귀, IoU 평가) | `box_iou` · `nms` · 회귀 헤드 |
