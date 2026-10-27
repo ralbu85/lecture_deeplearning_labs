@@ -10,7 +10,7 @@
 | 3 | 자동미분에서 신경망 학습까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab03.ipynb) |
 | 4-1 | 표 하나를 나누고 텐서로 만들기까지 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04_1.ipynb) |
 | 4-2 | 배치로 학습하고, 멈출 곳을 고르고, 한 번만 평가하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab04_2.ipynb) |
-| 5-1 | 사진을 텐서로 만들고 콘볼루션을 손으로 계산하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_1.ipynb) |
+| 5-1 | 사진을 텐서로 만들고 콘볼루션을 코드로 계산하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_1.ipynb) |
 | 5-2 | 콘볼루션 층으로 옷 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_2.ipynb) |
 | 6 | CNN 구조 만들고 학습시키기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab06.ipynb) |
 | 7 | 전이학습 — 사진 몇백 장으로 학습시키기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab07.ipynb) |
@@ -35,7 +35,7 @@
 | 2 | 교재 그림 → Linear·활성화 → XOR 함께 구현 → 그림 보고 모델 작성 (75분) | `nn.Linear` · 활성화 함수 · `nn.Sequential` |
 | 3 | 자동미분 → 두 변수의 편미분·기울기 벡터 → 손실 계산·신경망 학습 | `requires_grad` · `backward`/`grad` · `MSELoss` · `SGD` |
 | 4-1 · 4-2 | 자동차 9변수→연비: 분할 → 훈련 통계로 표준화·원-핫 → 로더 순회 (4-1) → 배치 다섯 줄 → 함수 조립 → 러닝커브 → 최적 지점 복원 → 테스트 평가 (4-2). 보고 타이핑 방식(✍️/▶/📝) | `train_test_split` · `DataLoader` · `train()`/`eval()` · `no_grad` · `state_dict` |
-| 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 콘볼루션 한 칸씩 → for문 → 함수 조립 → `F.conv2d` 대조 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
+| 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 6장 예제를 `F.conv2d`로 계산 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 3종 분류 (Flatten vs GAP) | `MaxPool2d` · `AdaptiveAvgPool2d` · `nn.Module` 서브클래싱 |
 | 7 | 개미·벌 397장 (처음부터 / 동결 / 미세조정) | `ImageFolder` · `models.resnet18` · `requires_grad=False` |
 | 9 (심화) | 물체 위치 예측 (박스 회귀, IoU 평가) | `box_iou` · `nms` · 회귀 헤드 |
