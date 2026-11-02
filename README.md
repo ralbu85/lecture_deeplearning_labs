@@ -37,7 +37,7 @@
 | 4-1 · 4-2 | 자동차 9변수→연비: 분할 → 훈련 통계로 표준화·원-핫 → 로더 순회 (4-1) → 배치 다섯 줄 → 함수 조립 → 러닝커브 → 최적 지점 복원 → 테스트 평가 (4-2). 보고 타이핑 방식(✍️/▶/📝) | `train_test_split` · `DataLoader` · `train()`/`eval()` · `no_grad` · `state_dict` |
 | 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 6장 예제를 `F.conv2d`로 계산 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 열 종류 분류 → 휴대폰 사진 판별 | `MaxPool2d` · `nn.Module` 서브클래싱 · `Normalize` · `device` · 사진 올리기 |
-| 7 | 사전학습 ResNet-18로 학습 없이 판별(내 사진 top-5) → 첫 층 커널 → 개미·벌 244장: 증강 → 마지막 층 교체·동결(1,026개) → 처음부터 학습과 비교 | `models.resnet18(weights=...)` · `topk` · `ImageFolder` · 증강 변환 · `requires_grad = False` · `model.fc` 교체 |
+| 7 | 사전학습 ResNet-18로 학습 없이 판별(내 사진 top-5) → 첫 층 커널 → 개미·벌 244장: 증강 → 특성 학습부 동결 → 분류부 교체(1,026개) → 학습 뒤 동결 확인 → 처음부터 학습과 비교 | `models.resnet18(weights=...)` · `topk` · `ImageFolder` · 증강 변환 · `requires_grad = False` · `model.fc` 교체 |
 | 9 (심화) | 물체 위치 예측 (박스 회귀, IoU 평가) | `box_iou` · `nms` · 회귀 헤드 |
 | 10 | 네이버 영화 리뷰 감성 분류 | `nn.Embedding` · HuggingFace 토크나이저 · 패딩·마스크 |
 | 11 | 같은 과제를 어텐션으로 (본 단어 시각화) | `softmax` 마스킹 · `MultiheadAttention` |
