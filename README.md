@@ -14,7 +14,7 @@
 | 5-2 | 콘볼루션 층으로 옷 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_2.ipynb) |
 | 6 | CNN을 쌓아 내 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab06.ipynb) |
 | 7 | 사전학습 모델로 사진 판별하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab07.ipynb) |
-| 9 (심화) | 객체탐지 — IoU와 NMS를 직접 구현하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab09.ipynb) |
+| 9 | YOLO로 사진 속 물체 찾기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab09.ipynb) |
 | 10 | 텍스트를 숫자로 — 토큰화와 임베딩 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab10.ipynb) |
 | 11 | 어텐션을 손으로 만들기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab11.ipynb) |
 | 12 | Transformer 블록과 언어모델 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab12.ipynb) |
@@ -23,7 +23,7 @@
 ## 사용법
 
 - 실습은 **채점하지 않는 연습장**입니다. 직접 타이핑하며 따라 실행하고, 숫자를 바꾸어 결과를 확인합니다.
-- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3의 해설은 노트북 끝에 있습니다. 실습 4-1·4-2·5-1·5-2·6·7은 보고 타이핑 방식으로, ✍️ 셀은 위에 보인 코드를 손으로 치고 📝 과제는 힌트만 있습니다. 실습 3에서는 셀마다 함수값·기울기·손실·가중치의 변화를 확인하고 신경망 학습 코드를 완성합니다. 실습 4는 표 하나를 나누고 학습·평가하는 절차를, 실습 5는 이미지 텐서와 콘볼루션 계산, 콘볼루션 층 하나의 분류 학습을 같은 방식으로 따라갑니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
+- `✏️ 직접 채워 보세요` 셀은 스스로 작성합니다. 실습 1~3의 해설은 노트북 끝에 있습니다. 실습 4-1·4-2·5-1·5-2·6·7·9는 보고 타이핑 방식으로, ✍️ 셀은 위에 보인 코드를 손으로 치고 📝 과제는 힌트만 있습니다. 실습 3에서는 셀마다 함수값·기울기·손실·가중치의 변화를 확인하고 신경망 학습 코드를 완성합니다. 실습 4는 표 하나를 나누고 학습·평가하는 절차를, 실습 5는 이미지 텐서와 콘볼루션 계산, 콘볼루션 층 하나의 분류 학습을 같은 방식으로 따라갑니다. 나머지 실습은 문제 아래 정답 셀과 맞춰 봅니다.
 - 실습 1~3은 코드에 포함된 작은 텐서를 사용합니다. 외부 데이터가 필요한 실습은 코드에서 내려받습니다.
 - 이론 설명은 강의 사이트에 있습니다. 실습 번호는 이론 장의 순서를 따르며, LAB1~7은 1~7주차, LAB10~12는 9~11주차에 진행합니다. 웹페이지와 Colab 링크는 사이트의 주차별 계획을 따릅니다. 9번(객체탐지)은 주차 계획 밖의 심화 자료입니다.
 
@@ -38,7 +38,7 @@
 | 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 6장 예제를 `F.conv2d`로 계산 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 열 종류 분류 → 휴대폰 사진 판별 | `MaxPool2d` · `nn.Module` 서브클래싱 · `Normalize` · `device` · 사진 올리기 |
 | 7 | 사전학습 ResNet-18로 학습 없이 판별(내 사진 top-5) → 첫 층 커널 → 개미·벌 244장: 증강 → 특성 학습부 동결 → 분류부 교체(1,026개) → 학습 뒤 동결 확인 → 처음부터 학습과 비교 | `models.resnet18(weights=...)` · `topk` · `ImageFolder` · 증강 변환 · `requires_grad = False` · `model.fc` 교체 |
-| 9 (심화) | 물체 위치 예측 (박스 회귀, IoU 평가) | `box_iou` · `nms` · 회귀 헤드 |
+| 9 | 사전학습 YOLO로 탐지 → 출력(클래스·신뢰도·박스) 읽기 → 신뢰도 기준 0.05/0.25/0.7 → NMS 끄기(5개→47개) → IoU 함수 → 카메라로 찍어 탐지 | `YOLO` · `r.boxes` · `conf=` · `iou=` · Colab 웹캠 |
 | 10 | 네이버 영화 리뷰 감성 분류 | `nn.Embedding` · HuggingFace 토크나이저 · 패딩·마스크 |
 | 11 | 같은 과제를 어텐션으로 (본 단어 시각화) | `softmax` 마스킹 · `MultiheadAttention` |
 | 12 | Transformer 블록 조립 + GPT-2 검산·생성 | `LayerNorm` · 잔차 · `AutoModelForCausalLM` |
