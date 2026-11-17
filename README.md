@@ -14,7 +14,7 @@
 | 5-2 | 콘볼루션 층으로 옷 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab05_2.ipynb) |
 | 6 | CNN을 쌓아 내 사진을 분류하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab06.ipynb) |
 | 7 | 사전학습 모델로 사진 판별하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab07.ipynb) |
-| 9 | YOLO로 사진 속 물체 찾기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab09.ipynb) |
+| 9 | 사전학습 탐지 모델 YOLO 사용하기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab09.ipynb) |
 | 10 | 텍스트를 숫자로 — 토큰화와 임베딩 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab10.ipynb) |
 | 11 | 어텐션을 손으로 만들기 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab11.ipynb) |
 | 12 | Transformer 블록과 언어모델 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ralbu85/lecture_deeplearning_labs/blob/main/lab12.ipynb) |
@@ -38,7 +38,7 @@
 | 5-1 · 5-2 | 사진 → 배열·채널 → `ToTensor`(min-max) → `(N, C, H, W)` → 파라미터 폭발 → 6장 예제를 `F.conv2d`로 계산 (5-1) → 출력 크기 공식 → `Conv2d` 파라미터 896 vs 38,535,424 → 콘볼루션 층 하나로 옷 10종 분류, 테스트 정확도 약 0.85 (5-2). 보고 타이핑 방식 | `ToTensor` · `F.conv2d` · `Conv2d` · `Flatten` · `Subset` · `CrossEntropyLoss` · `argmax` |
 | 6 | CIFAR-10 열 종류 분류 → 휴대폰 사진 판별 | `MaxPool2d` · `nn.Module` 서브클래싱 · `Normalize` · `device` · 사진 올리기 |
 | 7 | 사전학습 ResNet-18로 학습 없이 판별(내 사진 top-5) → 첫 층 커널 → 개미·벌 244장: 증강 → 특성 학습부 동결 → 분류부 교체(1,026개) → 학습 뒤 동결 확인 → 처음부터 학습과 비교 | `models.resnet18(weights=...)` · `topk` · `ImageFolder` · 증강 변환 · `requires_grad = False` · `model.fc` 교체 |
-| 9 | 사전학습 YOLO로 탐지 → 출력(클래스·신뢰도·박스) 읽기 → 신뢰도 기준 0.05/0.25/0.7 → NMS 끄기(5개→47개) → IoU 함수 → 카메라로 찍어 탐지 | `YOLO` · `r.boxes` · `conf=` · `iou=` · Colab 웹캠 |
+| 9 | 사전학습 YOLO로 탐지 → 출력(클래스·신뢰도·박스) 읽기 → 웹캠 실시간 탐지(그림 전송 / 영상 위 박스) → 학습 데이터(coco8 images·labels, YOLO 레이블 형식) | `YOLO` · `r.boxes` · Colab 웹캠 · YOLO 레이블 |
 | 10 | 네이버 영화 리뷰 감성 분류 | `nn.Embedding` · HuggingFace 토크나이저 · 패딩·마스크 |
 | 11 | 같은 과제를 어텐션으로 (본 단어 시각화) | `softmax` 마스킹 · `MultiheadAttention` |
 | 12 | Transformer 블록 조립 + GPT-2 검산·생성 | `LayerNorm` · 잔차 · `AutoModelForCausalLM` |
